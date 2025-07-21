@@ -263,7 +263,7 @@
         opacity: 1;
       }
       footer {
-        background: #b80000;
+        background: #43a047;
         color: #fff;
         text-align: center;
         padding: 40px 0 20px 0;
@@ -280,6 +280,62 @@
         right: 0;
         height: 3px;
         background: linear-gradient(90deg, #43a047, #66bb6a, #81c784);
+      }
+      /* Lightbox */
+      .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(30, 40, 40, 0.85);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+      }
+      .lightbox-overlay.active {
+        display: flex;
+      }
+      .lightbox-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        font-size: 2.2rem;
+        color: #2e7d32;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .lightbox-img,
+      .lightbox-video {
+        max-width: 80vw;
+        max-height: 70vh;
+        border-radius: 8px;
+        margin: 32px 0 18px 0;
+        background: #eee;
+      }
+      .lightbox-caption {
+        color: #2e7d32;
+        font-size: 1.1rem;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 18px;
+        text-align: center;
+        padding: 0 18px;
       }
       @media (max-width: 768px) {
         header h1 {
@@ -313,75 +369,127 @@
           margin: 20px 10px;
         }
       }
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        background: url("sirkuit.jpg") center center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(46, 125, 50, 0.45);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+      }
+      .hero-content h2 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.8rem;
+        margin-bottom: 18px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+      }
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 28px;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.18);
+      }
+      .cta-btn {
+        background: #fff;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 1.1rem;
+        padding: 13px 36px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(46, 125, 50, 0.13);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .cta-btn:hover {
+        background: #43a047;
+        color: #fff;
+        transform: translateY(-2px) scale(1.04);
+      }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Galeri Desa Leses</h1>
-      <nav>
-        <a href="index.html">Beranda</a>
-        <a href="profil.html">Profil</a>
-        <a href="potensi.html">Potensi</a>
-        <a href="galeri.html">Galeri</a>
-        <a href="kontak.html">Kontak</a>
-      </nav>
-    </header>
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h2>Selamat Datang di Desa Leses</h2>
+          <p>
+            Desa yang berkembang, harmonis, dan penuh potensi di Manisrenggo,
+            Klaten.
+          </p>
+          <a href="index.html" class="cta-btn">Beranda</a>
+          <a href="profil.html" class="cta-btn">Profil</a>
+          <a href="potensi.html" class="cta-btn">Potensi</a>
+          <a href="galeri.html" class="cta-btn">Galeri</a>
+          <a href="kontak.html" class="cta-btn">Kontak</a>
+        </div>
+      </section>
 
     <div class="container">
       <h2 class="section-title">Foto Kegiatan & Pemandangan</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img
-            src="sawah1.jpg"
-            alt="Pemandangan Desa Leses"
-          />
+          <img src="sawah1.jpg" alt="Pemandangan Desa Leses" />
           <div class="gallery-caption">
             <p>Pemandangan sawah dan aktivitas pertanian Desa Leses</p>
           </div>
         </div>
         <div class="gallery-item">
-          <img
-            src="sawah2.jpg"
-            alt="Kegiatan Buruh Harian"
-          />
+          <img src="sawah2.jpg" alt="Kegiatan Buruh Harian" />
           <div class="gallery-caption">
             <p>Buruh harian lepas bekerja di ladang dan kebun</p>
           </div>
         </div>
         <div class="gallery-item">
           <img
-            src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80"
-            alt="Kegiatan Pendidikan"
+            src="sd.jpg"
+            alt="Sekolah Dasar Negeri 2 Leses"
           />
           <div class="gallery-caption">
-            <p>Kegiatan belajar mengajar di sekolah desa</p>
+            <p>Sekolah Dasar Negeri 2 Leses</p>
           </div>
         </div>
         <div class="gallery-item">
-          <img
-            src="senam.jpg"
-            alt="Gotong Royong"
-          />
+          <img src="senam.jpg" alt="Senam Warga" />
           <div class="gallery-caption">
             <p>Senam Warga bersama Karang Taruna Desa Leses</p>
           </div>
         </div>
         <div class="gallery-item">
           <img
-            src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80"
-            alt="Kegiatan Anak-anak"
+            src="kantor.jpg"
+            alt="Kantor Desa Leses"
           />
           <div class="gallery-caption">
-            <p>Anak-anak bermain dan belajar bersama di lingkungan desa</p>
+            <p>Kantor Desa Leses</p>
           </div>
         </div>
         <div class="gallery-item">
           <img
-            src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80"
-            alt="Perayaan Desa"
+            src="motorsirkuit.jpg"
+            alt="Sirkuit Motor Trail"
           />
           <div class="gallery-caption">
-            <p>Perayaan hari besar dan festival budaya desa</p>
+            <p>Sirkuit Motor Trail yang ada di Desa Leses</p>
           </div>
         </div>
       </div>
@@ -393,40 +501,42 @@
       <div class="gallery-grid">
         <div class="gallery-item">
           <div class="video-container">
-            <video
-              controls
-              poster="sawah2.jpg"
-            >
-              <source
-                src="video1.mp4"
-                type="video/mp4"
-              />
-              Video gotong royong warga
+            <video controls poster="sawah2.jpg">
+              <source src="video1.mp4" type="video/mp4" />
+              Sawah Hijau Leses
             </video>
             <div class="video-overlay"></div>
           </div>
           <div class="gallery-caption">
-            <p>Dokumentasi Kegiatan Sehari-hari Warga Desa Leses </p>
+            <p>Dokumentasi Kegiatan Sehari-hari Warga Desa Leses di Sawah Hijau</p>
           </div>
         </div>
         <div class="gallery-item">
           <div class="video-container">
             <video
               controls
-              poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80"
+              poster="kantor.jpg"
             >
-              <source
-                src="santunan.mp4"
-                type="video/mp4"
-              />
+              <source src="santunan.mp4" type="video/mp4" />
               Video festival budaya desa
             </video>
             <div class="video-overlay"></div>
           </div>
           <div class="gallery-caption">
-            <p>Kegiatan Pengajian bersama Menyambut Tahun Baru Hijriah dan Santunan Anak Yatim Piatu</p>
+            <p>
+              Kegiatan Pengajian bersama Menyambut Tahun Baru Hijriah dan
+              Santunan Anak Yatim Piatu
+            </p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+      <div class="lightbox-content" id="lightboxContent">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <!-- Dynamic content here -->
       </div>
     </div>
 
@@ -572,5 +682,50 @@
         Indonesia
       </div>
     </footer>
+
+    <script>
+      // LIGHTBOX
+      const lightboxOverlay = document.getElementById("lightboxOverlay");
+      const lightboxContent = document.getElementById("lightboxContent");
+      const lightboxClose = document.getElementById("lightboxClose");
+      document.querySelectorAll(".gallery-item").forEach((item) => {
+        item.addEventListener("click", function (e) {
+          // Prevent click on video controls to open lightbox
+          if (e.target.tagName === "VIDEO" && e.target.controls) return;
+          lightboxOverlay.classList.add("active");
+          // Remove previous content except close button
+          Array.from(lightboxContent.children).forEach((child) => {
+            if (!child.classList.contains("lightbox-close")) child.remove();
+          });
+          let media, caption;
+          if (item.querySelector("img")) {
+            const img = item.querySelector("img");
+            media = document.createElement("img");
+            media.src = img.src;
+            media.alt = img.alt;
+            media.className = "lightbox-img";
+            caption = img.alt;
+          } else if (item.querySelector("video")) {
+            const vid = item.querySelector("video");
+            media = document.createElement("video");
+            media.src = vid.querySelector("source").src || vid.src;
+            media.poster = vid.poster;
+            media.className = "lightbox-video";
+            media.controls = true;
+            caption = item.querySelector(".gallery-caption p").textContent;
+          }
+          lightboxContent.appendChild(media);
+          const cap = document.createElement("div");
+          cap.className = "lightbox-caption";
+          cap.textContent = caption;
+          lightboxContent.appendChild(cap);
+        });
+      });
+      lightboxClose.onclick = () => lightboxOverlay.classList.remove("active");
+      lightboxOverlay.onclick = (e) => {
+        if (e.target === lightboxOverlay)
+          lightboxOverlay.classList.remove("active");
+      };
+    </script>
   </body>
 </html>

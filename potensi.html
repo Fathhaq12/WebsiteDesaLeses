@@ -244,7 +244,7 @@
         transform: scale(1.2) rotate(5deg);
       }
       footer {
-        background: #b80000;
+        background: #43a047;
         color: #fff;
         padding: 40px 0 20px 0;
         margin-top: 50px;
@@ -261,6 +261,68 @@
         height: 3px;
         background: linear-gradient(90deg, #43a047, #66bb6a, #81c784);
       }
+      .potensi-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin: 30px 0 10px 0;
+      }
+      .tab-btn {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 2px solid #43a047;
+        border-radius: 20px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+        outline: none;
+      }
+      .tab-btn.active,
+      .tab-btn:hover {
+        background: #43a047;
+        color: #fff;
+        border-color: #2e7d32;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.show {
+        display: block;
+      }
+      .galeri-potensi {
+        margin-top: 60px;
+      }
+      .galeri-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        margin-top: 30px;
+      }
+      .galeri-item {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 18px rgba(46, 54, 80, 0.09);
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.2s;
+      }
+      .galeri-item img,
+      .galeri-item video {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .galeri-caption {
+        padding: 12px 8px;
+        font-size: 1rem;
+        color: #2e7d32;
+        font-weight: 600;
+        background: #f1f8e9;
+      }
       @media (max-width: 768px) {
         header h1 {
           font-size: 2.5rem;
@@ -275,6 +337,9 @@
         }
         .potensi-grid {
           grid-template-columns: 1fr;
+        }
+        .galeri-grid {
+          grid-template-columns: 1fr 1fr;
         }
       }
       @media (max-width: 480px) {
@@ -292,31 +357,104 @@
         .container {
           margin: 20px 10px;
         }
+        .galeri-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        background: url("batubata.jpg") center center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(46, 125, 50, 0.45);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+      }
+      .hero-content h2 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.8rem;
+        margin-bottom: 18px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+      }
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 28px;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.18);
+      }
+      .cta-btn {
+        background: #fff;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 1.1rem;
+        padding: 13px 36px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(46, 125, 50, 0.13);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .cta-btn:hover {
+        background: #43a047;
+        color: #fff;
+        transform: translateY(-2px) scale(1.04);
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Potensi Desa Leses</h1>
-      <nav>
-        <a href="index.html">Beranda</a>
-        <a href="profil.html">Profil</a>
-        <a href="potensi.html">Potensi</a>
-        <a href="galeri.html">Galeri</a>
-        <a href="kontak.html">Kontak</a>
-      </nav>
-    </header>
+    <section class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h2>Selamat Datang di Desa Leses</h2>
+        <p>
+          Desa yang berkembang, harmonis, dan penuh potensi di Manisrenggo,
+          Klaten.
+        </p>
+        <a href="index.html" class="cta-btn">Beranda</a>
+        <a href="profil.html" class="cta-btn">Profil</a>
+        <a href="potensi.html" class="cta-btn">Potensi</a>
+        <a href="galeri.html" class="cta-btn">Galeri</a>
+        <a href="kontak.html" class="cta-btn">Kontak</a>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <div class="potensi-tabs">
+      <button class="tab-btn active" data-tab="ekonomi">Ekonomi</button>
+      <button class="tab-btn" data-tab="umkm">UMKM</button>
+      <button class="tab-btn" data-tab="wisata">Wisata</button>
+      <button class="tab-btn" data-tab="budaya">Budaya</button>
+    </div>
 
     <div class="container">
-      <div class="category-section">
-        <h2 class="section-title">Potensi Ekonomi & UMKM</h2>
+      <!-- Ekonomi -->
+      <div class="category-section tab-content show" data-tab="ekonomi">
+        <h2 class="section-title">Potensi Ekonomi</h2>
         <div class="category-intro">
           <p>
             Desa Leses memiliki potensi ekonomi yang beragam, mulai dari sektor
             pertanian hingga usaha mikro kecil menengah yang berkembang pesat.
             Dengan dukungan pemerintah desa dan semangat gotong royong
             masyarakat, berbagai potensi ini terus dikembangkan untuk
-            meningkatkan kesejahteraan warga.
+            meningkatkan kesejahteraan warga. Selain itu ada juga beberapa
           </p>
         </div>
         <div class="potensi-grid">
@@ -338,6 +476,20 @@
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- UMKM -->
+      <div class="category-section tab-content" data-tab="umkm">
+        <h2 class="section-title">Potensi UMKM</h2>
+        <div class="category-intro">
+          <p>
+            Usaha mikro kecil menengah berkembang dengan produk kerajinan
+            tangan, makanan olahan, dan jasa. Jumlah pelaku UMKM terus meningkat
+            seiring pertumbuhan ekonomi desa.
+          </p>
+        </div>
+        <div class="potensi-grid">
           <div class="potensi-card">
             <div class="icon-card">
               <img
@@ -355,27 +507,11 @@
               </p>
             </div>
           </div>
-          <div class="potensi-card">
-            <div class="icon-card">
-              <img
-                src="https://img.icons8.com/color/96/000000/graduation-cap.png"
-                alt="Pendidikan"
-                class="card-image"
-              />
-            </div>
-            <div class="card-content">
-              <h3>Pendidikan</h3>
-              <p>
-                Pendidikan formal didominasi lulusan SLTA/Sederajat dan
-                SLTP/Sederajat. Terdapat juga warga yang menempuh pendidikan
-                tinggi hingga S1, S2, dan S3.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
 
-      <div class="category-section">
+      <!-- Wisata -->
+      <div class="category-section tab-content" data-tab="wisata">
         <h2 class="section-title">Potensi Wisata</h2>
         <div class="category-intro">
           <p>
@@ -424,7 +560,8 @@
         </div>
       </div>
 
-      <div class="category-section">
+      <!-- Budaya -->
+      <div class="category-section tab-content" data-tab="budaya">
         <h2 class="section-title">Budaya & Tradisi</h2>
         <div class="category-intro">
           <p>
@@ -468,6 +605,29 @@
                 dan mempercepat pencapaian tujuan bersama.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Galeri Potensi -->
+      <div class="category-section galeri-potensi">
+        <h2 class="section-title">Galeri Potensi Desa</h2>
+        <div class="galeri-grid">
+          <div class="galeri-item">
+            <img src="batubata.jpg" alt="Batu Bata Leses" />
+            <div class="galeri-caption">Produksi Batu Bata</div>
+          </div>
+          <div class="galeri-item">
+            <img src="motorsirkuit.jpg" alt="sirkuit motor" />
+            <div class="galeri-caption">Sirkuit Motor Trail</div>
+          </div>
+          <div class="galeri-item">
+            <img src="sawah1.jpg" alt="Sawah Leses" />
+            <div class="galeri-caption">Sawah Hijau Leses</div>
+          </div>
+          <div class="galeri-item">
+            <img src="jagung.jpg" alt="jagung" />
+            <div class="galeri-caption">Komoditas Jagung</div>
           </div>
         </div>
       </div>
@@ -615,5 +775,35 @@
         Indonesia
       </div>
     </footer>
+
+    <script>
+      // Tab/Filter logic
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabContents = document.querySelectorAll(".tab-content");
+        tabBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            tabBtns.forEach((b) => b.classList.remove("active"));
+            this.classList.add("active");
+            const tab = this.getAttribute("data-tab");
+            tabContents.forEach((tc) => {
+              if (tc.getAttribute("data-tab") === tab) {
+                tc.classList.add("show");
+              } else {
+                tc.classList.remove("show");
+              }
+            });
+          });
+        });
+        // Default: show Ekonomi
+        tabContents.forEach((tc) => {
+          if (tc.getAttribute("data-tab") === "ekonomi") {
+            tc.classList.add("show");
+          } else {
+            tc.classList.remove("show");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

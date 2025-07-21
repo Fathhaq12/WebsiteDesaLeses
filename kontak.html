@@ -387,19 +387,80 @@
           margin-bottom: 5px;
         }
       }
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        background: url("sawah1.jpg") center center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(46, 125, 50, 0.45);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        color: #fff;
+      }
+      .hero-content h2 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.8rem;
+        margin-bottom: 18px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+      }
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 28px;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.18);
+      }
+      .cta-btn {
+        background: #fff;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 1.1rem;
+        padding: 13px 36px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(46, 125, 50, 0.13);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .cta-btn:hover {
+        background: #43a047;
+        color: #fff;
+        transform: translateY(-2px) scale(1.04);
+      }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Kontak & Lokasi</h1>
-      <nav>
-        <a href="index.html">Beranda</a>
-        <a href="profil.html">Profil</a>
-        <a href="potensi.html">Potensi</a>
-        <a href="galeri.html">Galeri</a>
-        <a href="kontak.html">Kontak</a>
-      </nav>
-    </header>
+    <section class="hero-section">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h2>Selamat Datang di Desa Leses</h2>
+        <p>
+          Desa yang berkembang, harmonis, dan penuh potensi di Manisrenggo,
+          Klaten.
+        </p>
+        <a href="index.html" class="cta-btn">Beranda</a>
+        <a href="profil.html" class="cta-btn">Profil</a>
+        <a href="potensi.html" class="cta-btn">Potensi</a>
+        <a href="galeri.html" class="cta-btn">Galeri</a>
+        <a href="kontak.html" class="cta-btn">Kontak</a>
+      </div>
+    </section>
 
     <div class="container">
       <h2 class="section-title">Hubungi Kami</h2>
@@ -513,10 +574,7 @@
     <footer>
       <div class="footer-content">
         <div>
-          <img
-            src="logoklaten.png"
-            alt="Logo Klaten"
-          />
+          <img src="logoklaten.png" alt="Logo Klaten" />
           <div class="footer-title">Pemerintah Desa Leses</div>
           <div class="footer-text">
             Dadirejo RT 26 / RW 01, Leses, Manisrenggo, Klaten<br />
