@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak & Lokasi Desa Leses</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #e8f5e9 0%,
+          #c8e6c9 50%,
+          #a5d6a7 100%
+        );
+        color: #2e3440;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      header {
+        background: linear-gradient(
+          135deg,
+          #2e7d32 0%,
+          #388e3c 50%,
+          #43a047 100%
+        );
+        color: #fff;
+        padding: 60px 0 30px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      header h1 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 3rem;
+        margin: 0 0 30px 0;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+      }
+      nav {
+        position: relative;
+        z-index: 1;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+      }
+      nav a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+      nav a:hover::before {
+        left: 100%;
+      }
+      nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 25px;
+        box-shadow: 0 10px 40px rgba(46, 54, 80, 0.1);
+        padding: 50px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #2e7d32, #43a047, #66bb6a);
+      }
+      .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        color: #2e7d32;
+        margin-bottom: 40px;
+        text-align: center;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, #2e7d32, #43a047);
+        border-radius: 2px;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+      .contact-section {
+        background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+        padding: 30px;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23a5d6a7" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23a5d6a7" opacity="0.1"/><circle cx="40" cy="60" r="1" fill="%23a5d6a7" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+      .contact-section h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        color: #2e7d32;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .contact-list {
+        list-style: none;
+        position: relative;
+        z-index: 1;
+      }
+      .contact-list li {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(165, 214, 167, 0.3);
+      }
+      .contact-list li:last-child {
+        border-bottom: none;
+      }
+      .contact-list li strong {
+        color: #2e7d32;
+        min-width: 100px;
+        font-weight: 600;
+      }
+      .contact-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        filter: drop-shadow(0 2px 4px rgba(46, 125, 50, 0.2));
+      }
+      .social-media {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(46, 54, 80, 0.1);
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .social-media h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        color: #2e7d32;
+        margin-bottom: 20px;
+      }
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .social-link {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
+        color: #2e7d32;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .social-link::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        transform: scale(0);
+        transition: transform 0.5s ease;
+      }
+      .social-link:hover::before {
+        transform: scale(1);
+      }
+      .social-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(46, 125, 50, 0.2);
+      }
+      .social-link img {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        position: relative;
+        z-index: 1;
+      }
+      .social-link span {
+        position: relative;
+        z-index: 1;
+      }
+      .map-section {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(46, 54, 80, 0.1);
+      }
+      .map-section h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        color: #2e7d32;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .map-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(46, 54, 80, 0.1);
+      }
+      .map-container iframe {
+        width: 100%;
+        height: 400px;
+        border: 0;
+        border-radius: 15px;
+      }
+      footer {
+        background: #43a047;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        margin-top: 50px;
+      }
+      footer .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 32px;
+        align-items: flex-start;
+      }
+      footer .footer-content div {
+        margin-bottom: 20px;
+      }
+      footer .footer-content img {
+        width: 70px;
+        margin-bottom: 18px;
+      }
+      footer .footer-content .footer-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      footer .footer-content .footer-text {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      footer .footer-content .social-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      footer .footer-content .social-links a {
+        color: #fff;
+        text-decoration: underline;
+      }
+      footer .footer-bottom {
+        text-align: center;
+        margin-top: 32px;
+        font-size: 1rem;
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.5rem;
+        }
+        nav a {
+          margin: 0 10px;
+          font-size: 1rem;
+        }
+        .container {
+          padding: 30px 20px;
+          margin: 30px 20px;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .social-links {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+      @media (max-width: 480px) {
+        header {
+          padding: 40px 20px 20px 20px;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
+        nav a {
+          display: block;
+          margin: 5px 0;
+          padding: 8px 15px;
+        }
+        .container {
+          margin: 20px 10px;
+        }
+        .contact-list li {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .contact-list li strong {
+          min-width: auto;
+          margin-bottom: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Kontak & Lokasi</h1>
+      <nav>
+        <a href="home.html">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="potensi.html">Potensi</a>
+        <a href="galeri.html">Galeri</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h2 class="section-title">Hubungi Kami</h2>
+
+      <div class="contact-grid">
+        <div class="contact-section">
+          <h3>Informasi Kontak</h3>
+          <ul class="contact-list">
+            <li>
+              <img
+                src="https://img.icons8.com/color/48/000000/marker.png"
+                alt="Alamat"
+                class="contact-icon"
+              />
+              <strong>Alamat:</strong> Dadirejo RT 26 / RW 01, Leses,
+              Manisrenggo, Klaten
+            </li>
+            <li>
+              <img
+                src="https://img.icons8.com/color/48/000000/email.png"
+                alt="Email"
+                class="contact-icon"
+              />
+              <strong>Email:</strong> leses-manisrenggo@gmail.com
+            </li>
+            <li>
+              <img
+                src="https://img.icons8.com/color/48/000000/phone.png"
+                alt="Telepon"
+                class="contact-icon"
+              />
+              <strong>Telp:</strong> 0855-4064-5175
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-section">
+          <h3>Layanan Darurat</h3>
+          <ul class="contact-list">
+            <li>
+              <img
+                src="https://img.icons8.com/?size=100&id=0JrIGuVzvy38&format=png&color=000000"
+                alt="Kantor"
+                class="contact-icon"
+              />
+              <strong>Kantor Desa:</strong> 0272-123456
+            </li>
+            <li>
+              <img
+                src="https://img.icons8.com/?size=100&id=rBh1fuOC6Bjx&format=png&color=000000 "
+                alt="Puskesmas"
+                class="contact-icon"
+              />
+              <strong>Puskesmas:</strong> 0272-654321
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="social-media">
+        <h3>Media Sosial</h3>
+        <div class="social-links">
+          <a
+            href="https://facebook.com/lesesdesa"
+            target="_blank"
+            class="social-link"
+          >
+            <img
+              src="https://img.icons8.com/color/48/000000/facebook.png"
+              alt="Facebook"
+            />
+            <span>Facebook</span>
+          </a>
+          <a
+            href="https://instagram.com/desa_leses_manisrenggo_klaten"
+            target="_blank"
+            class="social-link"
+          >
+            <img
+              src="https://img.icons8.com/color/48/000000/instagram-new.png"
+              alt="Instagram"
+            />
+            <span>Instagram</span>
+          </a>
+          <a
+            href="https://youtube.com/@lesesdesa"
+            target="_blank"
+            class="social-link"
+          >
+            <img
+              src="https://img.icons8.com/color/48/000000/youtube-play.png"
+              alt="YouTube"
+            />
+            <span>YouTube</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="map-section">
+        <h3>Lokasi Desa</h3>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps?q=Leses,Manisrenggo,Klaten&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <img
+            src="logoklaten.png"
+            alt="Logo Klaten"
+          />
+          <div class="footer-title">Pemerintah Desa Leses</div>
+          <div class="footer-text">
+            Dadirejo RT 26 / RW 01, Leses, Manisrenggo, Klaten<br />
+            Provinsi Jawa Tengah, 57485
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Hubungi Kami</div>
+          <div style="margin-bottom: 8px">
+            <span style="margin-right: 8px">📞</span> 0855-4064-5175
+          </div>
+          <div style="margin-bottom: 8px">
+            <span style="margin-right: 8px">✉️</span>
+            leses-manisrenggo@gmail.com
+          </div>
+          <div style="margin-bottom: 12px">
+            <a
+              href="https://instagram.com/desa_leses_manisrenggo_klaten"
+              target="_blank"
+              style="color: #fff; margin-right: 10px"
+              >Instagram</a
+            >
+            <a
+              href="https://facebook.com/lesesdesa"
+              target="_blank"
+              style="color: #fff; margin-right: 10px"
+              >Facebook</a
+            >
+            <a
+              href="https://youtube.com/@lesesdesa"
+              target="_blank"
+              style="color: #fff"
+              >YouTube</a
+            >
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Nomor Telepon Penting</div>
+          <div>
+            <a href="#" style="color: #fff; text-decoration: underline"
+              >Kantor Desa: 0272-123456</a
+            >
+          </div>
+          <div>
+            <a href="#" style="color: #fff; text-decoration: underline"
+              >Puskesmas: 0272-654321</a
+            >
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Jelajahi</div>
+          <div>
+            <a
+              href="https://kemendesa.go.id/"
+              target="_blank"
+              style="color: #fff; text-decoration: underline"
+              >Website Kemendesa</a
+            >
+          </div>
+          <div>
+            <a
+              href="https://kemendagri.go.id/"
+              target="_blank"
+              style="color: #fff; text-decoration: underline"
+              >Website Kemendagri</a
+            >
+          </div>
+          <div>
+            <a
+              href="https://klatenkab.go.id/"
+              target="_blank"
+              style="color: #fff; text-decoration: underline"
+              >Website Kabupaten Klaten</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Desa Leses, Manisrenggo, Klaten. Powered by PT Digital Desa
+        Indonesia
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Potensi Desa Leses</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #e8f5e9 0%,
+          #c8e6c9 50%,
+          #a5d6a7 100%
+        );
+        color: #2e3440;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      header {
+        background: linear-gradient(
+          135deg,
+          #2e7d32 0%,
+          #388e3c 50%,
+          #43a047 100%
+        );
+        color: #fff;
+        padding: 60px 0 30px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      header h1 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 3rem;
+        margin: 0 0 30px 0;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+      }
+      nav {
+        position: relative;
+        z-index: 1;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+      }
+      nav a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+      nav a:hover::before {
+        left: 100%;
+      }
+      nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 25px;
+        box-shadow: 0 10px 40px rgba(46, 54, 80, 0.1);
+        padding: 50px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #2e7d32, #43a047, #66bb6a);
+      }
+      .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        color: #2e7d32;
+        margin-bottom: 40px;
+        text-align: center;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, #2e7d32, #43a047);
+        border-radius: 2px;
+      }
+      .potensi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+      .potensi-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(46, 54, 80, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .potensi-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #2e7d32, #43a047);
+      }
+      .potensi-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 25px 50px rgba(46, 54, 80, 0.15);
+      }
+      .card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      .potensi-card:hover .card-image {
+        transform: scale(1.1);
+      }
+      .card-content {
+        padding: 30px 25px;
+      }
+      .card-content h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        color: #2e7d32;
+        margin-bottom: 15px;
+      }
+      .card-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+      .category-section {
+        margin-bottom: 60px;
+      }
+      .category-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        font-size: 1.1rem;
+        color: #555;
+        background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+      }
+      .category-intro::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23a5d6a7" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23a5d6a7" opacity="0.1"/><circle cx="40" cy="60" r="1" fill="%23a5d6a7" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+      .category-intro p {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+      }
+      .icon-card {
+        text-align: center;
+        padding: 20px;
+      }
+      .icon-card img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 4px 8px rgba(46, 125, 50, 0.2));
+        transition: transform 0.3s ease;
+      }
+      .icon-card:hover img {
+        transform: scale(1.2) rotate(5deg);
+      }
+      footer {
+        background: #b80000;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        margin-top: 50px;
+        font-size: 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #43a047, #66bb6a, #81c784);
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.5rem;
+        }
+        nav a {
+          margin: 0 10px;
+          font-size: 1rem;
+        }
+        .container {
+          padding: 30px 20px;
+          margin: 30px 20px;
+        }
+        .potensi-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 480px) {
+        header {
+          padding: 40px 20px 20px 20px;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
+        nav a {
+          display: block;
+          margin: 5px 0;
+          padding: 8px 15px;
+        }
+        .container {
+          margin: 20px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Potensi Desa Leses</h1>
+      <nav>
+        <a href="home.html">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="potensi.html">Potensi</a>
+        <a href="galeri.html">Galeri</a>
+        <a href="kontak.html">Kontak</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="category-section">
+        <h2 class="section-title">Potensi Ekonomi & UMKM</h2>
+        <div class="category-intro">
+          <p>
+            Desa Leses memiliki potensi ekonomi yang beragam, mulai dari sektor
+            pertanian hingga usaha mikro kecil menengah yang berkembang pesat.
+            Dengan dukungan pemerintah desa dan semangat gotong royong
+            masyarakat, berbagai potensi ini terus dikembangkan untuk
+            meningkatkan kesejahteraan warga.
+          </p>
+        </div>
+        <div class="potensi-grid">
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/rice-bowl.png"
+                alt="Pertanian"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>Pertanian & Buruh Harian</h3>
+              <p>
+                Sebagian besar warga Desa Leses bekerja sebagai buruh harian
+                lepas dan petani. Komoditas utama adalah padi, jagung, dan
+                hortikultura. Buruh harian lepas mendominasi sektor tenaga kerja
+                desa.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/?size=100&id=13010&format=png&color=000000"
+                alt="UMKM"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>UMKM & Kerajinan</h3>
+              <p>
+                Usaha mikro kecil menengah berkembang dengan produk kerajinan
+                tangan, makanan olahan, dan jasa. Jumlah pelaku UMKM terus
+                meningkat seiring pertumbuhan ekonomi desa.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/graduation-cap.png"
+                alt="Pendidikan"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>Pendidikan</h3>
+              <p>
+                Pendidikan formal didominasi lulusan SLTA/Sederajat dan
+                SLTP/Sederajat. Terdapat juga warga yang menempuh pendidikan
+                tinggi hingga S1, S2, dan S3.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-section">
+        <h2 class="section-title">Potensi Wisata</h2>
+        <div class="category-intro">
+          <p>
+            Keindahan alam dan kekayaan budaya Desa Leses menjadi daya tarik
+            wisata yang potensial. Dengan pengembangan yang tepat, sektor
+            pariwisata dapat menjadi sumber ekonomi baru yang berkelanjutan bagi
+            masyarakat desa.
+          </p>
+        </div>
+        <div class="potensi-grid">
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/forest.png"
+                alt="Wisata Alam"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>Wisata Alam</h3>
+              <p>
+                Pemandangan sawah yang hijau, perbukitan yang asri, dan aliran
+                sungai yang jernih menciptakan suasana alam yang menenangkan.
+                Cocok untuk wisata edukasi, fotografi, dan rekreasi keluarga.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/?size=100&id=f0LmcVCZTqfE&format=png&color=000000"
+                alt="Wisata Religi"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>Wisata Religi</h3>
+              <p>
+                Makam tokoh spiritual dan situs bersejarah menjadi destinasi
+                ziarah dan wisata religi. Tempat-tempat suci ini menawarkan
+                kedamaian dan pembelajaran nilai-nilai spiritual bagi
+                pengunjung.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-section">
+        <h2 class="section-title">Budaya & Tradisi</h2>
+        <div class="category-intro">
+          <p>
+            Warisan budaya dan tradisi yang masih lestari menjadi kekuatan
+            sosial yang mengikat masyarakat. Nilai-nilai luhur ini menjadi
+            fondasi dalam pembangunan desa yang berkelanjutan dan harmonis.
+          </p>
+        </div>
+        <div class="potensi-grid">
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/temple.png"
+                alt="Kesenian"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>Kesenian & Tradisi</h3>
+              <p>
+                Seni budaya tradisional seperti tarian, musik, dan upacara adat
+                masih dilestarikan oleh generasi muda. Festival budaya rutin
+                diadakan untuk mempertahankan dan memperkenalkan kekayaan budaya
+                lokal.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/people-working-together.png"
+                alt="Gotong Royong"
+                class="card-image"
+              />
+            </div>
+            <div class="card-content">
+              <h3>Gotong Royong</h3>
+              <p>
+                Semangat gotong royong dan kebersamaan menjadi modal sosial yang
+                kuat dalam pembangunan desa. Tradisi ini memperkuat solidaritas
+                dan mempercepat pencapaian tujuan bersama.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer
+      style="
+        background: #43a047;
+        color: #fff;
+        padding: 40px 0 20px 0;
+        margin-top: 50px;
+      "
+    >
+      <div
+        style="
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 32px;
+          align-items: flex-start;
+        "
+      >
+        <div>
+          <img
+            src="logoklaten.png"
+            alt="Logo Klaten"
+            style="width: 70px; margin-bottom: 18px"
+          />
+          <div
+            style="
+              font-family: Montserrat, sans-serif;
+              font-size: 1.2rem;
+              font-weight: 700;
+              margin-bottom: 10px;
+            "
+          >
+            Pemerintah Desa Leses
+          </div>
+          <div style="font-size: 1rem; line-height: 1.7">
+            Dadirejo RT 26 / RW 01, Leses, Manisrenggo, Klaten<br />
+            Provinsi Jawa Tengah, 57485
+          </div>
+        </div>
+        <div>
+          <div
+            style="
+              font-family: Montserrat, sans-serif;
+              font-size: 1.2rem;
+              font-weight: 700;
+              margin-bottom: 10px;
+            "
+          >
+            Hubungi Kami
+          </div>
+          <div style="margin-bottom: 8px">
+            <span style="margin-right: 8px">📞</span> 0855-4064-5175
+          </div>
+          <div style="margin-bottom: 8px">
+            <span style="margin-right: 8px">✉️</span>
+            leses-manisrenggo@gmail.com
+          </div>
+          <div style="margin-bottom: 12px">
+            <a
+              href="https://instagram.com/desa_leses_manisrenggo_klaten"
+              target="_blank"
+              style="color: #fff; margin-right: 10px"
+              >Instagram</a
+            >
+            <a
+              href="https://facebook.com/lesesdesa"
+              target="_blank"
+              style="color: #fff; margin-right: 10px"
+              >Facebook</a
+            >
+            <a
+              href="https://youtube.com/@lesesdesa"
+              target="_blank"
+              style="color: #fff"
+              >YouTube</a
+            >
+          </div>
+        </div>
+        <div>
+          <div
+            style="
+              font-family: Montserrat, sans-serif;
+              font-size: 1.2rem;
+              font-weight: 700;
+              margin-bottom: 10px;
+            "
+          >
+            Nomor Telepon Penting
+          </div>
+          <div>
+            <a href="#" style="color: #fff; text-decoration: underline"
+              >Kantor Desa: 0272-123456</a
+            >
+          </div>
+          <div>
+            <a href="#" style="color: #fff; text-decoration: underline"
+              >Puskesmas: 0272-654321</a
+            >
+          </div>
+        </div>
+        <div>
+          <div
+            style="
+              font-family: Montserrat, sans-serif;
+              font-size: 1.2rem;
+              font-weight: 700;
+              margin-bottom: 10px;
+            "
+          >
+            Jelajahi
+          </div>
+          <div>
+            <a
+              href="https://kemendesa.go.id/"
+              target="_blank"
+              style="color: #fff; text-decoration: underline"
+              >Website Kemendesa</a
+            >
+          </div>
+          <div>
+            <a
+              href="https://kemendagri.go.id/"
+              target="_blank"
+              style="color: #fff; text-decoration: underline"
+              >Website Kemendagri</a
+            >
+          </div>
+          <div>
+            <a
+              href="https://klatenkab.go.id/"
+              target="_blank"
+              style="color: #fff; text-decoration: underline"
+              >Website Kabupaten Klaten</a
+            >
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 32px; font-size: 1rem">
+        &copy; 2025 Desa Leses, Manisrenggo, Klaten. Powered by PT Digital Desa
+        Indonesia
+      </div>
+    </footer>
+  </body>
+</html>
