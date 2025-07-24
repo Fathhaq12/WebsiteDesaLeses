@@ -553,8 +553,33 @@
           font-size: 1.1rem;
         }
         nav a {
-          margin: 0 10px;
-          font-size: 1rem;
+          margin: 0;
+          padding: 15px 20px;
+          display: block;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100vw;
+          background: #388e3c;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 0;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+        }
+        .nav-links.show {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+        .hamburger {
+          display: flex;
         }
         .container {
           padding: 30px 20px;
@@ -592,10 +617,10 @@
       }
       @media (max-width: 480px) {
         header {
-          padding: 40px 20px 20px 20px;
+          padding: 30px 8px 10px 8px;
         }
         header h1 {
-          font-size: 2rem;
+          font-size: 1.1rem;
         }
         nav a {
           display: block;
@@ -603,7 +628,99 @@
           padding: 8px 15px;
         }
         .container {
-          margin: 20px 10px;
+          margin: 0;
+        }
+        .section-title {
+          font-size: 1rem;
+        }
+      }
+      /* Hamburger menu styles */
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        position: relative;
+      }
+      .nav-links {
+        display: flex;
+        gap: 0;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        margin-left: 16px;
+        z-index: 1000;
+        background: none;
+        border: none;
+        padding: 8px;
+        position: relative;
+      }
+      .hamburger span {
+        height: 4px;
+        width: 30px;
+        background: #fff;
+        margin: 3px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+        display: block;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 6px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+      }
+      @media (max-width: 900px) {
+        .container {
+          padding: 20px 6px;
+        }
+        .section-title {
+          font-size: 1.7rem;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+      @media (max-width: 768px) {
+        nav a {
+          font-size: 1rem;
+          margin: 0;
+          padding: 15px 20px;
+          display: block;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100vw;
+          background: #388e3c;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 0;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+        }
+        .nav-links.show {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+      @media (max-width: 480px) {
+        .nav-links {
+          top: 48px;
         }
       }
     </style>
@@ -613,16 +730,30 @@
     <section class="hero-section">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h2>Selamat Datang di Desa Leses</h2>
+        <h2>Selamat Datang di Website Desa Leses</h2>
         <p>
           Desa yang berkembang, harmonis, dan penuh potensi di Manisrenggo,
           Klaten.
         </p>
-        <a href="index.html" class="cta-btn">Beranda</a>
-        <a href="profil.html" class="cta-btn">Profil</a>
-        <a href="potensi.html" class="cta-btn">Potensi</a>
-        <a href="galeri.html" class="cta-btn">Galeri</a>
-        <a href="kontak.html" class="cta-btn">Kontak</a>
+        <nav>
+          <div class="nav-links" id="navLinks">
+            <a href="index.html">Beranda</a>
+            <a href="profil.html">Profil</a>
+            <a href="potensi.html">Potensi</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="kontak.html">Kontak</a>
+          </div>
+          <button
+            class="hamburger"
+            id="hamburgerMenu"
+            aria-label="Menu"
+            type="button"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
       </div>
     </section>
 
@@ -641,10 +772,8 @@
           class="slide-img"
           style="display: none"
         />
-        <button class="slide-nav prev" onclick="plusSlides(-1)">
-          &#10094;
-        </button>
-        <button class="slide-nav next" onclick="plusSlides(1)">&#10095;</button>
+        <button class="slide-nav prev">&#10094;</button>
+        <button class="slide-nav next">&#10095;</button>
       </div>
 
       <div class="welcome-section">
@@ -875,71 +1004,130 @@
         showSlide(slideIndex + n);
       }
       setInterval(() => plusSlides(1), 5000);
-      window.onload = () => showSlide(0);
 
-      // TAB FILTER POTENSI
-      const tabs = document.querySelectorAll(".potensi-tab");
-      const items = document.querySelectorAll(".potensi-item");
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", function () {
-          tabs.forEach((t) => t.classList.remove("active"));
-          this.classList.add("active");
-          const filter = this.getAttribute("data-filter");
-          items.forEach((item) => {
-            if (
-              filter === "all" ||
-              item.getAttribute("data-category").includes(filter)
-            ) {
-              item.style.display = "";
-            } else {
-              item.style.display = "none";
+      // Perbaiki inisialisasi slideshow
+      document.addEventListener("DOMContentLoaded", function () {
+        showSlide(0);
+
+        // Add event listeners untuk slide navigation
+        const prevBtn = document.querySelector(".slide-nav.prev");
+        const nextBtn = document.querySelector(".slide-nav.next");
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => plusSlides(-1));
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => plusSlides(1));
+        }
+
+        // Hamburger menu
+        const hamburger = document.getElementById("hamburgerMenu");
+        const navLinks = document.getElementById("navLinks");
+
+        if (hamburger && navLinks) {
+          hamburger.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("show");
+          });
+
+          // Close menu when clicking nav links
+          navLinks.addEventListener("click", function (e) {
+            if (e.target.tagName === "A") {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("show");
             }
           });
-        });
+
+          // Close menu when clicking outside
+          document.addEventListener("click", function (e) {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("show");
+            }
+          });
+
+          // Handle window resize
+          window.addEventListener("resize", function () {
+            if (window.innerWidth > 768) {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("show");
+            }
+          });
+        }
       });
 
-      // LIGHTBOX
+      // TAB FILTER POTENSI - hanya jika ada elemen
+      const tabs = document.querySelectorAll(".potensi-tab");
+      const items = document.querySelectorAll(".potensi-item");
+      if (tabs.length > 0) {
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            tabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+            const filter = this.getAttribute("data-filter");
+            items.forEach((item) => {
+              if (
+                filter === "all" ||
+                item.getAttribute("data-category").includes(filter)
+              ) {
+                item.style.display = "";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+      }
+
+      // LIGHTBOX - hanya jika ada elemen
       const lightboxOverlay = document.getElementById("lightboxOverlay");
       const lightboxContent = document.getElementById("lightboxContent");
       const lightboxClose = document.getElementById("lightboxClose");
-      document.querySelectorAll(".potensi-item").forEach((item) => {
-        item.addEventListener("click", function (e) {
-          // Prevent click on video controls to open lightbox
-          if (e.target.tagName === "VIDEO" && e.target.controls) return;
-          lightboxOverlay.classList.add("active");
-          // Remove previous content except close button
-          Array.from(lightboxContent.children).forEach((child) => {
-            if (!child.classList.contains("lightbox-close")) child.remove();
+
+      if (lightboxOverlay && lightboxContent && lightboxClose) {
+        document.querySelectorAll(".potensi-item").forEach((item) => {
+          item.addEventListener("click", function (e) {
+            if (e.target.tagName === "VIDEO" && e.target.controls) return;
+            lightboxOverlay.classList.add("active");
+            Array.from(lightboxContent.children).forEach((child) => {
+              if (!child.classList.contains("lightbox-close")) child.remove();
+            });
+            let media, caption;
+            if (item.querySelector("img")) {
+              const img = item.querySelector("img");
+              media = document.createElement("img");
+              media.src = img.src;
+              media.alt = img.alt;
+              media.className = "lightbox-img";
+              caption = img.alt;
+            } else if (item.querySelector("video")) {
+              const vid = item.querySelector("video");
+              media = document.createElement("video");
+              media.src = vid.src;
+              media.poster = vid.poster;
+              media.className = "lightbox-video";
+              media.controls = true;
+              caption = item.querySelector(".potensi-caption h4").textContent;
+            }
+            lightboxContent.appendChild(media);
+            const cap = document.createElement("div");
+            cap.className = "lightbox-caption";
+            cap.textContent = caption;
+            lightboxContent.appendChild(cap);
           });
-          let media, caption;
-          if (item.querySelector("img")) {
-            const img = item.querySelector("img");
-            media = document.createElement("img");
-            media.src = img.src;
-            media.alt = img.alt;
-            media.className = "lightbox-img";
-            caption = img.alt;
-          } else if (item.querySelector("video")) {
-            const vid = item.querySelector("video");
-            media = document.createElement("video");
-            media.src = vid.src;
-            media.poster = vid.poster;
-            media.className = "lightbox-video";
-            media.controls = true;
-            caption = item.querySelector(".potensi-caption h4").textContent;
-          }
-          lightboxContent.appendChild(media);
-          const cap = document.createElement("div");
-          cap.className = "lightbox-caption";
-          cap.textContent = caption;
-          lightboxContent.appendChild(cap);
         });
-      });
-      lightboxClose.onclick = () => lightboxOverlay.classList.remove("active");
-      lightboxOverlay.onclick = (e) => {
-        if (e.target === lightboxOverlay)
-          lightboxOverlay.classList.remove("active");
-      };
+
+        lightboxClose.addEventListener("click", () =>
+          lightboxOverlay.classList.remove("active")
+        );
+        lightboxOverlay.addEventListener("click", (e) => {
+          if (e.target === lightboxOverlay)
+            lightboxOverlay.classList.remove("active");
+        });
+      }
     </script>
   </body>
 </html>

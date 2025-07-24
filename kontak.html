@@ -74,6 +74,10 @@
       nav {
         position: relative;
         z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
       }
       nav a {
         color: #fff;
@@ -343,50 +347,7 @@
         margin-top: 32px;
         font-size: 1rem;
       }
-      @media (max-width: 768px) {
-        header h1 {
-          font-size: 2.5rem;
-        }
-        nav a {
-          margin: 0 10px;
-          font-size: 1rem;
-        }
-        .container {
-          padding: 30px 20px;
-          margin: 30px 20px;
-        }
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-        .social-links {
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-      @media (max-width: 480px) {
-        header {
-          padding: 40px 20px 20px 20px;
-        }
-        header h1 {
-          font-size: 2rem;
-        }
-        nav a {
-          display: block;
-          margin: 5px 0;
-          padding: 8px 15px;
-        }
-        .container {
-          margin: 20px 10px;
-        }
-        .contact-list li {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .contact-list li strong {
-          min-width: auto;
-          margin-bottom: 5px;
-        }
-      }
+      /* HERO SECTION */
       .hero-section {
         position: relative;
         width: 100%;
@@ -424,28 +385,93 @@
         margin-bottom: 28px;
         text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.18);
       }
-      .cta-btn {
-        background: #fff;
-        color: #2e7d32;
-        font-weight: bold;
-        font-size: 1.1rem;
-        padding: 13px 36px;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 4px 18px rgba(46, 125, 50, 0.13);
-        transition: background 0.2s, color 0.2s, transform 0.2s;
-        text-decoration: none;
-        display: inline-block;
+      /* Hamburger menu styles */
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        position: relative;
       }
-      .cta-btn:hover {
-        background: #43a047;
-        color: #fff;
-        transform: translateY(-2px) scale(1.04);
+      .nav-links {
+        display: flex;
+        gap: 0;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        margin-left: 16px;
+        z-index: 1000;
+        background: none;
+        border: none;
+        padding: 8px;
+        position: relative;
+      }
+      .hamburger span {
+        height: 4px;
+        width: 30px;
+        background: #fff;
+        margin: 3px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+        display: block;
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 6px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+      }
+      @media (max-width: 900px) {
+        .hamburger {
+          display: flex;
+        }
+      }
+      @media (max-width: 768px) {
+        nav a {
+          font-size: 1rem;
+          margin: 0;
+          padding: 15px 20px;
+          display: block;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100vw;
+          background: #388e3c;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 0;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+        }
+        .nav-links.show {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+      @media (max-width: 480px) {
+        .nav-links {
+          top: 48px;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- HERO SECTION -->
     <section class="hero-section">
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -454,11 +480,25 @@
           Desa yang berkembang, harmonis, dan penuh potensi di Manisrenggo,
           Klaten.
         </p>
-        <a href="index.html" class="cta-btn">Beranda</a>
-        <a href="profil.html" class="cta-btn">Profil</a>
-        <a href="potensi.html" class="cta-btn">Potensi</a>
-        <a href="galeri.html" class="cta-btn">Galeri</a>
-        <a href="kontak.html" class="cta-btn">Kontak</a>
+        <nav>
+          <div class="nav-links" id="navLinks">
+            <a href="index.html">Beranda</a>
+            <a href="profil.html">Profil</a>
+            <a href="potensi.html">Potensi</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="kontak.html">Kontak</a>
+          </div>
+          <button
+            class="hamburger"
+            id="hamburgerMenu"
+            aria-label="Menu"
+            type="button"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
       </div>
     </section>
 
@@ -657,5 +697,47 @@
         Indonesia
       </div>
     </footer>
+
+    <script>
+      // Hamburger menu
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburgerMenu");
+        const navLinks = document.getElementById("navLinks");
+
+        if (hamburger && navLinks) {
+          hamburger.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("show");
+          });
+
+          // Close menu when clicking nav links
+          navLinks.addEventListener("click", function (e) {
+            if (e.target.tagName === "A") {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("show");
+            }
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener("click", function (e) {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("show");
+            }
+          });
+
+          // Handle window resize
+          window.addEventListener("resize", function () {
+            if (window.innerWidth > 768) {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("show");
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
