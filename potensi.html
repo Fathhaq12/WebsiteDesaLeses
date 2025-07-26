@@ -160,12 +160,13 @@
         margin-bottom: 60px;
       }
       .potensi-card {
-        background: #fff;
+        background: linear-gradient(135deg, #fff 0%, #f8fffe 100%);
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(46, 54, 80, 0.1);
+        box-shadow: 0 8px 25px rgba(46, 54, 80, 0.12);
         overflow: hidden;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
         position: relative;
+        border: 1px solid rgba(165, 214, 167, 0.3);
       }
       .potensi-card::before {
         content: "";
@@ -174,34 +175,47 @@
         left: 0;
         right: 0;
         height: 5px;
-        background: linear-gradient(90deg, #2e7d32, #43a047);
+        background: linear-gradient(90deg, #2e7d32, #43a047, #66bb6a);
+        border-radius: 20px 20px 0 0;
       }
       .potensi-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(46, 54, 80, 0.15);
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(46, 54, 80, 0.18);
+        border-color: #81c784;
       }
-      .card-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
+      .icon-card {
+        text-align: center;
+        padding: 30px 20px 20px 20px;
+        background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+        position: relative;
       }
-      .potensi-card:hover .card-image {
-        transform: scale(1.1);
+      .icon-card img {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 0;
+        filter: drop-shadow(0 4px 12px rgba(46, 125, 50, 0.25));
+        transition: transform 0.4s ease;
+      }
+      .icon-card:hover img {
+        transform: scale(1.15) rotate(8deg);
       }
       .card-content {
-        padding: 30px 25px;
+        padding: 25px;
+        background: #fff;
       }
       .card-content h3 {
         font-family: "Montserrat", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         color: #2e7d32;
         margin-bottom: 15px;
+        text-align: center;
+        font-weight: 700;
       }
       .card-content p {
         font-size: 1rem;
-        line-height: 1.6;
+        line-height: 1.7;
         color: #555;
+        text-align: justify;
       }
       .category-section {
         margin-bottom: 60px;
@@ -250,6 +264,7 @@
       footer {
         background: #43a047;
         color: #fff;
+        text-align: center;
         padding: 40px 0 20px 0;
         margin-top: 50px;
         font-size: 1rem;
@@ -326,31 +341,67 @@
         justify-content: center;
         gap: 18px;
         margin: 30px 0 10px 0;
+        flex-wrap: wrap;
+        padding: 0 20px;
       }
       .tab-btn {
-        background: #e8f5e9;
+        background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
         color: #2e7d32;
-        border: 2px solid #43a047;
-        border-radius: 20px;
-        padding: 10px 28px;
+        border: 2px solid #a5d6a7;
+        border-radius: 25px;
+        padding: 12px 32px;
         font-size: 1.1rem;
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.2s, color 0.2s, border 0.2s;
+        transition: all 0.3s ease;
         outline: none;
+        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .tab-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+      .tab-btn:hover::before {
+        left: 100%;
       }
       .tab-btn.active,
       .tab-btn:hover {
-        background: #43a047;
+        background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
         color: #fff;
         border-color: #2e7d32;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
       }
       .tab-content {
         display: none;
+        animation: fadeInUp 0.5s ease-in-out;
       }
       .tab-content.show {
         display: block;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       .galeri-potensi {
         margin-top: 60px;
@@ -364,24 +415,36 @@
       .galeri-item {
         background: #fff;
         border-radius: 16px;
-        box-shadow: 0 4px 18px rgba(46, 54, 80, 0.09);
+        box-shadow: 0 6px 20px rgba(46, 54, 80, 0.12);
         overflow: hidden;
         text-align: center;
-        transition: transform 0.2s;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(165, 214, 167, 0.2);
+      }
+      .galeri-item:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 12px 30px rgba(46, 54, 80, 0.15);
+        border-color: #81c784;
       }
       .galeri-item img,
       .galeri-item video {
         width: 100%;
-        height: 180px;
+        height: 200px;
         object-fit: cover;
         display: block;
+        transition: transform 0.3s ease;
+      }
+      .galeri-item:hover img,
+      .galeri-item:hover video {
+        transform: scale(1.1);
       }
       .galeri-caption {
-        padding: 12px 8px;
+        padding: 15px 12px;
         font-size: 1rem;
         color: #2e7d32;
         font-weight: 600;
-        background: #f1f8e9;
+        background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+        font-family: "Montserrat", sans-serif;
       }
       /* Hamburger menu styles */
       nav {
@@ -425,6 +488,12 @@
         transform: rotate(45deg) translate(-6px, -6px);
       }
       @media (max-width: 900px) {
+        .container {
+          padding: 20px 6px;
+        }
+        .section-title {
+          font-size: 1.7rem;
+        }
         .hamburger {
           display: flex;
         }
@@ -466,6 +535,104 @@
           top: 48px;
         }
       }
+      @media (max-width: 900px) {
+        .hamburger {
+          display: flex;
+        }
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        .hero-content h2 {
+          font-size: 2rem;
+        }
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+        .container {
+          padding: 30px 15px;
+          margin: 30px 15px;
+        }
+        .section-title {
+          font-size: 2rem;
+        }
+        .potensi-tabs {
+          gap: 12px;
+          margin: 20px 10px;
+        }
+        .tab-btn {
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+        .potensi-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .galeri-grid {
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 15px;
+        }
+        .galeri-item img,
+        .galeri-item video {
+          height: 140px;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-section {
+          height: 280px;
+        }
+        .hero-content h2 {
+          font-size: 1.6rem;
+        }
+        .hero-content p {
+          font-size: 1rem;
+        }
+        .container {
+          margin: 20px 8px;
+          padding: 20px 12px;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+        .potensi-tabs {
+          gap: 8px;
+          margin: 15px 5px;
+        }
+        .tab-btn {
+          padding: 8px 16px;
+          font-size: 0.9rem;
+        }
+        .category-intro {
+          padding: 20px 15px;
+          font-size: 1rem;
+        }
+        .icon-card {
+          padding: 20px 15px 15px 15px;
+        }
+        .icon-card img {
+          width: 70px;
+          height: 70px;
+        }
+        .card-content {
+          padding: 20px 15px;
+        }
+        .card-content h3 {
+          font-size: 1.2rem;
+        }
+        .galeri-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .galeri-item img,
+        .galeri-item video {
+          height: 120px;
+        }
+        .galeri-caption {
+          padding: 10px 8px;
+          font-size: 0.9rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -501,10 +668,10 @@
 
     <!-- Filter Tabs -->
     <div class="potensi-tabs">
-      <button class="tab-btn active" data-tab="ekonomi">Ekonomi</button>
-      <button class="tab-btn" data-tab="umkm">UMKM</button>
-      <button class="tab-btn" data-tab="wisata">Wisata</button>
-      <button class="tab-btn" data-tab="budaya">Budaya</button>
+      <button class="tab-btn active" data-tab="ekonomi">💰 Ekonomi</button>
+      <button class="tab-btn" data-tab="umkm">🏪 UMKM</button>
+      <button class="tab-btn" data-tab="wisata">🌄 Wisata</button>
+      <button class="tab-btn" data-tab="budaya">🎭 Budaya</button>
     </div>
 
     <div class="container">
@@ -526,16 +693,32 @@
               <img
                 src="https://img.icons8.com/color/96/000000/rice-bowl.png"
                 alt="Pertanian"
-                class="card-image"
               />
             </div>
             <div class="card-content">
-              <h3>Pertanian & Buruh Harian</h3>
+              <h3>🌾 Pertanian & Buruh Harian</h3>
               <p>
                 Sebagian besar warga Desa Leses bekerja sebagai buruh harian
                 lepas dan petani. Komoditas utama adalah padi, jagung, dan
                 hortikultura. Buruh harian lepas mendominasi sektor tenaga kerja
-                desa.
+                desa dengan kontribusi yang signifikan terhadap ekonomi lokal.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/factory.png"
+                alt="Industri"
+              />
+            </div>
+            <div class="card-content">
+              <h3>🏭 Industri Batu Bata</h3>
+              <p>
+                Industri batu bata menjadi salah satu sektor unggulan di Desa
+                Leses. Dengan bahan baku tanah liat yang melimpah, produksi batu
+                bata berkualitas tinggi telah menjadi sumber pendapatan utama
+                bagi banyak keluarga.
               </p>
             </div>
           </div>
@@ -558,16 +741,32 @@
               <img
                 src="https://img.icons8.com/?size=100&id=13010&format=png&color=000000"
                 alt="UMKM"
-                class="card-image"
               />
             </div>
             <div class="card-content">
-              <h3>UMKM & Kerajinan</h3>
+              <h3>🛍️ UMKM & Kerajinan</h3>
               <p>
                 Usaha mikro kecil menengah berkembang dengan produk kerajinan
                 tangan, makanan olahan, dan jasa. Jumlah pelaku UMKM terus
                 meningkat seiring pertumbuhan ekonomi desa. Diantaranya ada
                 bengkel, warung, dan pabrik produksi tahu tempe.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/restaurant.png"
+                alt="Kuliner"
+              />
+            </div>
+            <div class="card-content">
+              <h3>🍽️ Usaha Kuliner</h3>
+              <p>
+                Berbagai usaha kuliner lokal berkembang dengan menyajikan
+                makanan tradisional dan modern. Warung makan, kedai kopi, dan
+                usaha catering menjadi pilihan usaha yang menjanjikan bagi
+                masyarakat desa.
               </p>
             </div>
           </div>
@@ -591,15 +790,31 @@
               <img
                 src="https://img.icons8.com/color/96/000000/forest.png"
                 alt="Wisata Alam"
-                class="card-image"
               />
             </div>
             <div class="card-content">
-              <h3>Wisata Alam</h3>
+              <h3>🌿 Wisata Alam</h3>
               <p>
                 Pemandangan sawah yang hijau, perbukitan yang asri, dan aliran
                 sungai yang jernih menciptakan suasana alam yang menenangkan.
                 Cocok untuk wisata edukasi, fotografi, dan rekreasi keluarga.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/motorbike.png"
+                alt="Wisata Olahraga"
+              />
+            </div>
+            <div class="card-content">
+              <h3>🏍️ Sirkuit Motor Trail</h3>
+              <p>
+                Sirkuit motor trail menjadi daya tarik wisata olahraga yang
+                unik. Jalur yang menantang dan pemandangan alam yang indah
+                memberikan pengalaman berkendara yang tak terlupakan bagi para
+                pecinta motor trail.
               </p>
             </div>
           </div>
@@ -622,15 +837,32 @@
               <img
                 src="https://img.icons8.com/color/96/000000/people-working-together.png"
                 alt="Gotong Royong"
-                class="card-image"
               />
             </div>
             <div class="card-content">
-              <h3>Gotong Royong</h3>
+              <h3>🤝 Gotong Royong</h3>
               <p>
                 Semangat gotong royong dan kebersamaan menjadi modal sosial yang
                 kuat dalam pembangunan desa. Tradisi ini memperkuat solidaritas
-                dan mempercepat pencapaian tujuan bersama.
+                dan mempercepat pencapaian tujuan bersama dalam berbagai
+                kegiatan.
+              </p>
+            </div>
+          </div>
+          <div class="potensi-card">
+            <div class="icon-card">
+              <img
+                src="https://img.icons8.com/color/96/000000/mosque.png"
+                alt="Keagamaan"
+              />
+            </div>
+            <div class="card-content">
+              <h3>🕌 Nilai Keagamaan</h3>
+              <p>
+                Nilai-nilai keagamaan yang kuat menjadi pegangan hidup
+                masyarakat. Kegiatan keagamaan rutin dan tradisi islami yang
+                terpelihara menciptakan harmoni dan kedamaian dalam kehidupan
+                bermasyarakat.
               </p>
             </div>
           </div>
@@ -848,7 +1080,7 @@
         // Tab functionality
         const tabBtns = document.querySelectorAll(".tab-btn");
         const tabContents = document.querySelectorAll(".tab-content");
-        
+
         tabBtns.forEach((btn) => {
           btn.addEventListener("click", function () {
             tabBtns.forEach((b) => b.classList.remove("active"));
@@ -863,20 +1095,14 @@
             });
           });
         });
-        
+
         // Default: show Ekonomi tab
-        document.querySelector('.tab-btn[data-tab="ekonomi"]').classList.add("active");
-        document.querySelector('.tab-content[data-tab="ekonomi"]').classList.add("show");
-      });
-    </script>
-  </body>
-</html>
-          if (tc.getAttribute("data-tab") === "ekonomi") {
-            tc.classList.add("show");
-          } else {
-            tc.classList.remove("show");
-          }
-        });
+        document
+          .querySelector('.tab-btn[data-tab="ekonomi"]')
+          .classList.add("active");
+        document
+          .querySelector('.tab-content[data-tab="ekonomi"]')
+          .classList.add("show");
       });
     </script>
   </body>

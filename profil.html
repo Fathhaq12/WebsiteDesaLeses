@@ -325,55 +325,92 @@
         margin-top: 40px;
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 900px) {
+        .profil-section {
+          grid-template-columns: 1fr;
+          text-align: center;
+          padding: 20px;
+        }
+        .container {
+          padding: 20px 6px;
+        }
         .chart-grid {
           grid-template-columns: 1fr;
         }
         .chart-wrapper {
-          height: 300px;
+          height: 220px;
         }
       }
       @media (max-width: 768px) {
         header h1 {
-          font-size: 2.5rem;
-        }
-        nav a {
-          margin: 0 10px;
-          font-size: 1rem;
+          font-size: 2rem;
         }
         .container {
-          padding: 30px 20px;
-          margin: 30px 20px;
+          padding: 18px 2vw;
+          margin: 18px 2vw;
         }
-        .profil-section {
-          grid-template-columns: 1fr;
-          text-align: center;
+        nav a {
+          font-size: 1rem;
+          margin: 0 8px;
+          padding: 8px 12px;
         }
-        .struktur-grid {
-          grid-template-columns: 1fr;
+        .chart-wrapper {
+          height: 180px;
         }
-        .fasilitas-grid {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        .section-title {
+          font-size: 1.5rem;
+        }
+        .demografi-section {
+          padding: 18px 2vw;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 8px 0;
+          margin: 8px 0;
+        }
+        .section-title {
+          font-size: 1.2rem;
+        }
+        .chart-wrapper {
+          height: 120px;
+        }
+        .profil-img {
+          max-width: 90vw;
+        }
+        .demografi-table th,
+        .demografi-table td {
+          padding: 7px 5px;
+          font-size: 0.9rem;
         }
       }
       @media (max-width: 480px) {
         header {
-          padding: 40px 20px 20px 20px;
+          padding: 30px 8px 10px 8px;
         }
         header h1 {
-          font-size: 2rem;
+          font-size: 1.1rem;
+        }
+        .container {
+          margin: 0;
+          padding: 20px 15px;
         }
         nav a {
           display: block;
           margin: 5px 0;
           padding: 8px 15px;
         }
-        .container {
-          margin: 20px 10px;
+        .chart-title {
+          font-size: 1rem;
         }
-        .demografi-table th,
-        .demografi-table td {
-          padding: 10px 15px;
+        .chart-wrapper {
+          height: 250px;
+        }
+        .chart-container {
+          padding: 20px;
+        }
+        .section-title {
+          font-size: 1.5rem;
         }
       }
       .hero-section {
@@ -1115,8 +1152,12 @@
       style="
         background: #43a047;
         color: #fff;
+        text-align: center;
         padding: 40px 0 20px 0;
         margin-top: 50px;
+        font-size: 1rem;
+        position: relative;
+        overflow: hidden;
       "
     >
       <div
@@ -1255,60 +1296,71 @@
     </footer>
 
     <script>
-      // Chart configurations
-      const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            backgroundColor: "rgba(46, 125, 50, 0.9)",
-            titleColor: "#fff",
-            bodyColor: "#fff",
-            borderColor: "#2e7d32",
-            borderWidth: 1,
-            cornerRadius: 8,
-            displayColors: false,
-            callbacks: {
-              label: function (context) {
-                return context.parsed.y + " orang";
-              },
-            },
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: "rgba(165, 214, 167, 0.3)",
-            },
-            ticks: {
-              color: "#666",
-              font: {
-                family: "Open Sans",
-              },
-            },
-          },
-          x: {
-            grid: {
+      // Chart configurations with better mobile responsiveness
+      function getChartOptions() {
+        const isMobile = window.innerWidth < 768;
+        return {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
               display: false,
             },
-            ticks: {
-              color: "#666",
-              font: {
-                family: "Open Sans",
+            tooltip: {
+              backgroundColor: "rgba(46, 125, 50, 0.9)",
+              titleColor: "#fff",
+              bodyColor: "#fff",
+              borderColor: "#2e7d32",
+              borderWidth: 1,
+              cornerRadius: 8,
+              displayColors: false,
+              titleFont: {
+                size: isMobile ? 10 : 12,
               },
-              maxRotation: 45,
+              bodyFont: {
+                size: isMobile ? 9 : 11,
+              },
+              callbacks: {
+                label: function (context) {
+                  return context.parsed.y + " orang";
+                },
+              },
             },
           },
-        },
-        animation: {
-          duration: 2000,
-          easing: "easeOutQuart",
-        },
-      };
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: "rgba(165, 214, 167, 0.3)",
+              },
+              ticks: {
+                color: "#666",
+                font: {
+                  family: "Open Sans",
+                  size: isMobile ? 8 : 10,
+                },
+              },
+            },
+            x: {
+              grid: {
+                display: false,
+              },
+              ticks: {
+                color: "#666",
+                font: {
+                  family: "Open Sans",
+                  size: isMobile ? 7 : 9,
+                },
+                maxRotation: isMobile ? 90 : 45,
+              },
+            },
+          },
+          animation: {
+            duration: 2000,
+            easing: "easeOutQuart",
+          },
+        };
+      }
 
       // Education Chart Data
       const pendidikanData = {
@@ -1389,60 +1441,152 @@
         // Education Chart
         const pendidikanCtx = document.getElementById("pendidikanChart");
         if (pendidikanCtx) {
-          new Chart(pendidikanCtx, {
-            type: "bar",
-            data: pendidikanData,
-            options: {
-              ...chartOptions,
-              scales: {
-                ...chartOptions.scales,
-                x: {
-                  ...chartOptions.scales.x,
-                  ticks: {
-                    ...chartOptions.scales.x.ticks,
-                    callback: function (value, index, values) {
-                      const label = this.getLabelForValue(value);
-                      return label.length > 10
-                        ? label.substring(0, 10) + "..."
-                        : label;
+          try {
+            new Chart(pendidikanCtx, {
+              type: "bar",
+              data: pendidikanData,
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  tooltip: {
+                    backgroundColor: "rgba(46, 125, 50, 0.9)",
+                    titleColor: "#fff",
+                    bodyColor: "#fff",
+                    borderColor: "#2e7d32",
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                      label: function (context) {
+                        return context.parsed.y + " orang";
+                      },
                     },
                   },
                 },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    grid: {
+                      color: "rgba(165, 214, 167, 0.3)",
+                    },
+                    ticks: {
+                      color: "#666",
+                      font: {
+                        family: "Open Sans",
+                        size: 10,
+                      },
+                    },
+                  },
+                  x: {
+                    grid: {
+                      display: false,
+                    },
+                    ticks: {
+                      color: "#666",
+                      font: {
+                        family: "Open Sans",
+                        size: 9,
+                      },
+                      maxRotation: 45,
+                      callback: function (value, index, values) {
+                        const label = this.getLabelForValue(value);
+                        return label.length > 10
+                          ? label.substring(0, 10) + "..."
+                          : label;
+                      },
+                    },
+                  },
+                },
+                animation: {
+                  duration: 2000,
+                  easing: "easeOutQuart",
+                },
               },
-            },
-          });
+            });
+          } catch (error) {
+            console.error("Error creating education chart:", error);
+          }
         }
 
         // Occupation Chart
         const pekerjaanCtx = document.getElementById("pekerjaanChart");
         if (pekerjaanCtx) {
-          new Chart(pekerjaanCtx, {
-            type: "bar",
-            data: pekerjaanData,
-            options: {
-              ...chartOptions,
-              scales: {
-                ...chartOptions.scales,
-                x: {
-                  ...chartOptions.scales.x,
-                  ticks: {
-                    ...chartOptions.scales.x.ticks,
-                    callback: function (value, index, values) {
-                      const label = this.getLabelForValue(value);
-                      return label.length > 12
-                        ? label.substring(0, 12) + "..."
-                        : label;
+          try {
+            new Chart(pekerjaanCtx, {
+              type: "bar",
+              data: pekerjaanData,
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  tooltip: {
+                    backgroundColor: "rgba(46, 125, 50, 0.9)",
+                    titleColor: "#fff",
+                    bodyColor: "#fff",
+                    borderColor: "#2e7d32",
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                      label: function (context) {
+                        return context.parsed.y + " orang";
+                      },
                     },
                   },
                 },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    grid: {
+                      color: "rgba(165, 214, 167, 0.3)",
+                    },
+                    ticks: {
+                      color: "#666",
+                      font: {
+                        family: "Open Sans",
+                        size: 10,
+                      },
+                    },
+                  },
+                  x: {
+                    grid: {
+                      display: false,
+                    },
+                    ticks: {
+                      color: "#666",
+                      font: {
+                        family: "Open Sans",
+                        size: 9,
+                      },
+                      maxRotation: 45,
+                      callback: function (value, index, values) {
+                        const label = this.getLabelForValue(value);
+                        return label.length > 12
+                          ? label.substring(0, 12) + "..."
+                          : label;
+                      },
+                    },
+                  },
+                },
+                animation: {
+                  duration: 2000,
+                  easing: "easeOutQuart",
+                },
               },
-            },
-          });
+            });
+          } catch (error) {
+            console.error("Error creating occupation chart:", error);
+          }
         }
-      });
 
-      // Hamburger menu
-      document.addEventListener("DOMContentLoaded", function () {
+        // Hamburger menu
         const hamburger = document.getElementById("hamburgerMenu");
         const navLinks = document.getElementById("navLinks");
 
